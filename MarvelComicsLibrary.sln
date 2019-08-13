@@ -1,0 +1,68 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29102.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Application", "0 - Application", "{F72FE8F6-8CC6-4562-BC58-801935ECB7C5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Services", "1 - Services", "{50AB3E87-719A-4415-9D7E-091F45A48C03}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Business", "2 - Business", "{E450F02F-39EF-4DD5-8EF4-DBE92A069631}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Domain", "3 - Domain", "{7683C478-8F90-4922-B97B-5ADF9E5D67F3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Repository", "4 - Repository", "{CF2495D2-0C35-43BC-92BD-BDC8953CEBF3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Integration", "5 - Integration", "{2715A8BC-5BD2-4960-8076-F496A6CC9198}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarvelComicsLibrary.Domain", "src\MarvelComicsLibrary.Domain\MarvelComicsLibrary.Domain.csproj", "{CE1343EA-EFCC-4836-9A8D-0CEDD4839546}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarvelComicsLibrary.Repository", "src\MarvelComicsLibrary.Repository\MarvelComicsLibrary.Repository.csproj", "{8DE5AB97-9990-4B72-ACCF-66F0EB987D03}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarvelComicsLibrary.Integration", "src\MarvelComicsLibrary.Integration\MarvelComicsLibrary.Integration.csproj", "{4905CB97-517E-4CC5-9A1B-B31CE8F64025}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarvelComicsLibrary.Business", "src\MarvelComicsLibrary.Business\MarvelComicsLibrary.Business.csproj", "{DFBEEF3D-1535-4F57-B64B-52117985AD2E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarvelComicsLibrary.Service", "src\MarvelComicsLibrary.Service\MarvelComicsLibrary.Service.csproj", "{F248B4D7-5635-44E1-9A30-28CC96BC94EB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CE1343EA-EFCC-4836-9A8D-0CEDD4839546}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE1343EA-EFCC-4836-9A8D-0CEDD4839546}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE1343EA-EFCC-4836-9A8D-0CEDD4839546}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE1343EA-EFCC-4836-9A8D-0CEDD4839546}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DE5AB97-9990-4B72-ACCF-66F0EB987D03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DE5AB97-9990-4B72-ACCF-66F0EB987D03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DE5AB97-9990-4B72-ACCF-66F0EB987D03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DE5AB97-9990-4B72-ACCF-66F0EB987D03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4905CB97-517E-4CC5-9A1B-B31CE8F64025}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4905CB97-517E-4CC5-9A1B-B31CE8F64025}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4905CB97-517E-4CC5-9A1B-B31CE8F64025}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4905CB97-517E-4CC5-9A1B-B31CE8F64025}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFBEEF3D-1535-4F57-B64B-52117985AD2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFBEEF3D-1535-4F57-B64B-52117985AD2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFBEEF3D-1535-4F57-B64B-52117985AD2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFBEEF3D-1535-4F57-B64B-52117985AD2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F248B4D7-5635-44E1-9A30-28CC96BC94EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F248B4D7-5635-44E1-9A30-28CC96BC94EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F248B4D7-5635-44E1-9A30-28CC96BC94EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F248B4D7-5635-44E1-9A30-28CC96BC94EB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CE1343EA-EFCC-4836-9A8D-0CEDD4839546} = {7683C478-8F90-4922-B97B-5ADF9E5D67F3}
+		{8DE5AB97-9990-4B72-ACCF-66F0EB987D03} = {CF2495D2-0C35-43BC-92BD-BDC8953CEBF3}
+		{4905CB97-517E-4CC5-9A1B-B31CE8F64025} = {2715A8BC-5BD2-4960-8076-F496A6CC9198}
+		{DFBEEF3D-1535-4F57-B64B-52117985AD2E} = {E450F02F-39EF-4DD5-8EF4-DBE92A069631}
+		{F248B4D7-5635-44E1-9A30-28CC96BC94EB} = {50AB3E87-719A-4415-9D7E-091F45A48C03}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B099EBDC-323A-49B2-BB74-6E4FFA74D40F}
+	EndGlobalSection
+EndGlobal
