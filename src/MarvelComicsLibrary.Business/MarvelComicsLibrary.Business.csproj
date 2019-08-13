@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MarvelComicsLibrary.Domain\MarvelComicsLibrary.Domain.csproj" />
+    <ProjectReference Include="..\MarvelComicsLibrary.Repository\MarvelComicsLibrary.Repository.csproj" />
+  </ItemGroup>
+
 </Project>
