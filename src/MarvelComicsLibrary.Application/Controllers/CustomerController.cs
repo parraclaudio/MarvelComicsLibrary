@@ -32,7 +32,7 @@ namespace MarvelComicsLibrary.Application.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<CustomerViewModel>> Get()
+        public async Task<IActionResult> Get()
         {
             return Ok(_mapper.Map<List<CustomerViewModel>>( _service.GetList() ));
         }
@@ -46,7 +46,7 @@ namespace MarvelComicsLibrary.Application.Controllers
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody] CustomerViewModel customer)
+        public async void Post([FromBody] CustomerViewModel customer)
         {
             _service.Add(_mapper.Map<Customer>(customer));
         }
