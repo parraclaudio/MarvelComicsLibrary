@@ -35,14 +35,18 @@ namespace MarvelComicsLibrary.Application.Controllers
         [HttpGet]
         public ActionResult<List<CustomerViewModel>> Get()
         {
-            return Ok(_mapper.Map<List<CustomerViewModel>>( _service.GetList() ));
+            var customerVM = _mapper.Map<List<CustomerViewModel>>( _service.GetList() );
+
+            return Ok(_mapper.Map<ResponseRequest>(customerVM));
         }
 
         // GET api/values/5
         [HttpGet("{key}")]
         public ActionResult<CustomerViewModel> Get(Guid key)
         {
-            return Ok(_mapper.Map<CustomerViewModel>(_service.Find(key)));
+            var customerVM = _mapper.Map<CustomerViewModel>(_service.Find(key));
+
+            return Ok(_mapper.Map<ResponseRequest>(customerVM));
         }
 
         // POST api/values

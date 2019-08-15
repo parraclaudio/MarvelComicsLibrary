@@ -26,7 +26,6 @@ namespace MarvelComicsLibrary.Application.Model
             {
                 MessageError.Add(new MessageError { ErrorCode = error.ErrorCode, Message = error.ErrorMessage });
             }
-
         }
     }
 }

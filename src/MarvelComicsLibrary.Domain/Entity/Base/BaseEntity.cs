@@ -15,6 +15,7 @@ namespace MarvelComicsLibrary.Domain.Entity.Base
         public BaseEntity()
         {
             Key = Guid.NewGuid();
+            ValidationResult = new ValidationResult();
         }
 
         //Collection Database ID
