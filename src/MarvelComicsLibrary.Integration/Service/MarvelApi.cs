@@ -25,5 +25,16 @@ namespace MarvelComicsLibrary.Integration.Service
 
             return JsonConvert.DeserializeObject<MarvelComic>( response.Content );
         }
+
+        public MarvelComic GetComicByTitle(string title)
+        {
+            var request = new RestRequest(Method.GET);
+
+            request.AddParameter("title", title);
+
+            var response = _httpFactory.RestHttp(MarvelApiConstants.ComicsEndpoint, request);
+
+            return JsonConvert.DeserializeObject<MarvelComic>(response.Content);
+        }
     }
 }

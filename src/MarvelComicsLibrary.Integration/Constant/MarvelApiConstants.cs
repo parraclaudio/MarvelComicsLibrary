@@ -14,6 +14,8 @@ namespace MarvelComicsLibrary.Integration.Constant
 
         public const string Hash = "179f6347fd3fb89f2def48223cea4e88";
 
+        public const string TimeStamp = "637012374943146952";
+
         public const string ComicsEndpoint = BaseUrl + ApiPath + "/comics";
     }
 }

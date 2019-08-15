@@ -13,14 +13,12 @@ namespace MarvelComicsLibrary.Integration.Factory
         {
             System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls11 | System.Net.SecurityProtocolType.Tls12;
 
-            var timeStamp = DateTime.UtcNow.ToString("yyyyMMddHHmmssffff");
-
             //Header necessario para Chamada do serviço no cornerstone
-            request.AddParameter("ts", timeStamp);
+            request.AddParameter("ts", MarvelApiConstants.TimeStamp );
             request.AddParameter("apikey", MarvelApiConstants.ApiKey);
             request.AddParameter("hash", MarvelApiConstants.Hash);
-            request.AddParameter("Title", "Hulk");
-            request.AddParameter("Format", "Comic");
+            request.AddParameter("titleStartsWith", "Hulk");
+            request.AddParameter("format", "Comic");
 
             //create RestSharp client and POST request object
             var client = new RestClient(url);

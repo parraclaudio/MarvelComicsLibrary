@@ -8,8 +8,6 @@ namespace MarvelComicsLibrary.Domain.Entity
     {         
         public long ComicId { get; set; }
 
-        public long DigitalId { get; set; }
-
         public string Title { get; set; }
 
         public long IssueNumber { get; set; }

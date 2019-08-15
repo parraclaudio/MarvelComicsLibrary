@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using FluentValidation;
 using MarvelComicsLibrary.Business.Interface;
+using MarvelComicsLibrary.Business.Validation;
 using MarvelComicsLibrary.Domain.Entity;
 using MarvelComicsLibrary.Integration.Interface;
 using MarvelComicsLibrary.Repository.Interface;
@@ -18,14 +20,26 @@ namespace MarvelComicsLibrary.Business.Business
 
         public Comic Add(Comic obj)
         {
-            _repository.Insert(obj);
+            Validate(obj, Activator.CreateInstance<ComicValidation>());
+
+            if (obj.Valid)
+            {
+                _repository.Insert(obj);
+            }
 
             return obj;
         }
 
         public Comic Amend(Comic obj)
         {
-            throw new NotImplementedException();
+            Validate(obj, Activator.CreateInstance<ComicValidation>());
+
+            if (obj.Valid)
+            {
+                _repository.Insert(obj);
+            }
+
+            return obj;
         }
 
         public Comic Find(Guid key)
@@ -41,6 +55,11 @@ namespace MarvelComicsLibrary.Business.Business
         public void Remove(Guid key)
         {
             throw new NotImplementedException();
+        }
+
+        private void Validate(Comic obj, AbstractValidator<Comic> validator)
+        {
+            obj.ValidationResult = validator.Validate(obj);
         }
     }
 }

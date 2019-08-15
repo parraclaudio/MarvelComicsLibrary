@@ -1,6 +1,9 @@
 ﻿using MarvelComicsLibrary.Application.AutoMapper;
 using MarvelComicsLibrary.Business.Business;
 using MarvelComicsLibrary.Business.Interface;
+using MarvelComicsLibrary.Integration.Factory;
+using MarvelComicsLibrary.Integration.Interface;
+using MarvelComicsLibrary.Integration.Service;
 using MarvelComicsLibrary.Repository.Interface;
 using MarvelComicsLibrary.Repository.Repository;
 using MarvelComicsLibrary.Service.Interface;
@@ -23,6 +26,9 @@ namespace MarvelComicsLibrary.Application.Extensions
             var autoMapperConfig = AutoMapperConfig.Register();
             services.AddSingleton(autoMapperConfig.CreateMapper());
 
+            services.AddTransient<IMarvelApi, MarvelApi>();
+            services.AddTransient<IHttpFactory, HttpFactory>();
+
             DependencyInjectionServices(services);
             DependencyInjectionBusiness(services);
             DependencyInjectionRepository(services);
@@ -35,6 +41,7 @@ namespace MarvelComicsLibrary.Application.Extensions
         private static void DependencyInjectionServices(IServiceCollection services)
         {
             services.AddTransient<ICustomerService, CustomerService>();
+            services.AddTransient<IComicService, ComicService>();
         }
 
 
@@ -45,6 +52,7 @@ namespace MarvelComicsLibrary.Application.Extensions
         private static void DependencyInjectionBusiness(IServiceCollection services)
         {
             services.AddTransient<ICustomerBusiness, CustomerBusiness>();
+            services.AddTransient<IComicBusiness, ComicBusiness>();
         }
 
 
