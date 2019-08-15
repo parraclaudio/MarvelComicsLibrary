@@ -54,7 +54,26 @@ namespace MarvelComicsLibrary.Repository.Repository
 
         public void Update(T obj)
         {
-            _collection.ReplaceOne(Builders<T>.Filter.Eq("_id", obj.Id), obj);   
+            try
+            {
+                _collection.ReplaceOne(Builders<T>.Filter.Eq("_id", obj.Id), obj);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void Delete(Guid Key)
+        {
+            try
+            {
+                 _collection.DeleteOne(Builders<T>.Filter.Eq("Key", Key));
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
     }
