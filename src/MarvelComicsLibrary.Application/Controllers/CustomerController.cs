@@ -64,6 +64,13 @@ namespace MarvelComicsLibrary.Application.Controllers
         [HttpPut("{key}")]
         public ActionResult Put(Guid key, [FromBody] CustomerViewModel obj)
         {
+            var dbCustomer = _service.Find(key);
+
+            if(dbCustomer == null)
+            {
+                return BadRequest("Cliente não encontrado");
+            }
+
             var customer = _mapper.Map<Customer>(obj);
 
             if (!customer.Valid)
@@ -71,7 +78,10 @@ namespace MarvelComicsLibrary.Application.Controllers
                 return BadRequest(customer.ValidationResult.Errors);
             }
 
-            _service.Amend(key, customer);
+            customer.Id = dbCustomer.Id;
+            customer.Key = key;
+
+            _service.Amend(customer);
 
             return Ok();
         }

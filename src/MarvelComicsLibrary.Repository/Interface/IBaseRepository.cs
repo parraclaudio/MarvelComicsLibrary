@@ -8,8 +8,6 @@ namespace MarvelComicsLibrary.Repository.Interface
     {
         T GetByKey(Guid Key);
 
-        Guid GetIdByKey(Guid Key);
-
         List<T> GetAll();
 
         void Insert(T obj);

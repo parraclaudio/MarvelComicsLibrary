@@ -10,6 +10,6 @@ namespace MarvelComicsLibrary.Service.Interface
         List<Customer> GetList();
         Customer Find(Guid key);
         void Add(Customer obj);
-        void Amend(Guid Key, Customer obj);
+        void Amend(Customer obj);
     }
 }

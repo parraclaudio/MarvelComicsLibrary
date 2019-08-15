@@ -31,10 +31,8 @@ namespace MarvelComicsLibrary.Service.Service
             _repository.Insert(obj);
         }
 
-        public void Amend(Guid Key, Customer obj)
+        public void Amend(Customer obj)
         {
-            obj.Id = _repository.GetIdByKey(Key);
-
             _repository.Update(obj);
         }
     }

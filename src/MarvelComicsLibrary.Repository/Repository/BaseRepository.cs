@@ -31,12 +31,13 @@ namespace MarvelComicsLibrary.Repository.Repository
 
         public T GetByKey(Guid Key)
         {
-            return _collection.Find(Builders<T>.Filter.Eq("Key", Key)).FirstOrDefault();
-        }
-
-        public Guid GetIdByKey(Guid Key)
-        {
-            return _collection.Find(Builders<T>.Filter.Eq("Key", Key)).FirstOrDefault().Id;
+            try { 
+                return _collection.Find(Builders<T>.Filter.Eq("Key", Key)).FirstOrDefault();
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public void Insert(T obj)
