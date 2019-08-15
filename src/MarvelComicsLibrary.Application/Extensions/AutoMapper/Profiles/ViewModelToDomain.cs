@@ -8,7 +8,9 @@ namespace MarvelComicsLibrary.Application.Extensions.AutoMapper.Profiles
     {
         public ViewModelToDomain()
         {
-            CreateMap<CustomerViewModel, Customer>();
+            CreateMap<CustomerViewModel, Customer>()
+                .ConstructUsing(x => new Customer(x.Email, x.Cpf, x.Name, x.Telephone))
+                .ForMember(x=> x.Key, opt=> opt.Ignore());
         }
     }
 }

@@ -7,6 +7,6 @@ namespace MarvelComicsLibrary.Business.Interface
     {
         List<Customer> GetList();
 
-        bool Add(Customer obj);
+        Customer Save(Customer obj);
     }
 }

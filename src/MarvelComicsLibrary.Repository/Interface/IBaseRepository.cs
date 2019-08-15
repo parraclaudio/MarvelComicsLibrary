@@ -6,8 +6,12 @@ namespace MarvelComicsLibrary.Repository.Interface
 {
     public interface IBaseRepository<T>
     {
-        List<T> QueryAll();
+        T GetByKey(Guid Key);
 
-        bool Insert(T obj);
+        List<T> GetAll();
+
+        void Insert(T obj);
+
+        void Update(T obj);
     }
 }

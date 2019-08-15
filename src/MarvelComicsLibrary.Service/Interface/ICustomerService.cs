@@ -9,6 +9,6 @@ namespace MarvelComicsLibrary.Service.Interface
     {
         List<Customer> GetList();
 
-        bool Add(Customer obj);
+        void Add(Customer obj);
     }
 }

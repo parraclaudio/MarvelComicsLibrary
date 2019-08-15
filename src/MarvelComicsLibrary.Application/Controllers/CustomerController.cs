@@ -32,7 +32,7 @@ namespace MarvelComicsLibrary.Application.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public ActionResult<List<CustomerViewModel>> Get()
         {
             return Ok(_mapper.Map<List<CustomerViewModel>>( _service.GetList() ));
         }
@@ -46,9 +46,18 @@ namespace MarvelComicsLibrary.Application.Controllers
 
         // POST api/values
         [HttpPost]
-        public async void Post([FromBody] CustomerViewModel customer)
+        public ActionResult<Guid> Post([FromBody] CustomerViewModel obj)
         {
-            _service.Add(_mapper.Map<Customer>(customer));
+            var customer = _mapper.Map<Customer>(obj);
+
+           if(!customer.Valid)
+            {
+                return BadRequest(customer.ValidationResult.Errors);
+            }
+
+            _service.Add(customer);
+
+            return Ok(customer.Key);
         }
 
         // PUT api/values/5

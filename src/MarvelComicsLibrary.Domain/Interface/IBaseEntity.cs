@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FluentValidation.Results;
+using System;
 
 namespace MarvelComicsLibrary.Domain.Interface
 {
@@ -9,5 +10,8 @@ namespace MarvelComicsLibrary.Domain.Interface
     {
         Guid Id { get; set; }
         Guid Key { get; set; }
+        ValidationResult ValidationResult { get;  set; }
+
+         bool Valid { get; set; }
     }
 }

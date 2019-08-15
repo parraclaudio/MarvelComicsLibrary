@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using FluentValidation;
 using MarvelComicsLibrary.Business.Interface;
 using MarvelComicsLibrary.Domain.Entity;
+using MarvelComicsLibrary.Domain.Validation;
 using MarvelComicsLibrary.Repository.Interface;
 
 namespace MarvelComicsLibrary.Business.Business
@@ -14,14 +17,26 @@ namespace MarvelComicsLibrary.Business.Business
             _repository = repository;
         }
 
-        public bool Add(Customer obj)
+        public Customer Save(Customer obj)
         {
-            return _repository.Insert(obj);
+            Validate(obj, Activator.CreateInstance<CustomerValidation>());
+
+            if(obj.Valid)
+            {
+                _repository.Insert(obj);
+            }
+
+            return obj;
         }
 
         public List<Customer> GetList()
         {
-            return _repository.QueryAll();
+            return _repository.GetAll();
+        }
+
+        private void Validate(Customer obj, AbstractValidator<Customer> validator)
+        {
+            obj.ValidationResult = validator.Validate(obj);            
         }
     }
 }
