@@ -12,8 +12,6 @@ namespace MarvelComicsLibrary.Application.Extensions.AutoMapper.Profiles
         public DomainToViewModel()
         {
             CreateMap<Customer, CustomerViewModel>();
-
-            CreateMap<Customer, ResponseRequest>().ConstructUsing( src => new ResponseRequest( src.Valid, src.ValidationResult.Errors, src) );
         }
     }
 }

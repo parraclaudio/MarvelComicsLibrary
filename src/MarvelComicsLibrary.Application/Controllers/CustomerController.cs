@@ -51,25 +51,27 @@ namespace MarvelComicsLibrary.Application.Controllers
         {
             var customer = _mapper.Map<Customer>( obj );
 
-            var save = _mapper.Map<CustomerViewModel>( _service.Add(customer) );
+            var save =  _service.Add(customer);
 
-            if (!ModelState.IsValid)
+            var customerVM = _mapper.Map<CustomerViewModel>( save );
+
+            if (!customerVM.Valid)
             {
-                return BadRequest( _mapper.Map<ResponseRequest>(save) );
+                return BadRequest( _mapper.Map<ResponseRequest>(customerVM) );
             }
 
-            return Ok( _mapper.Map<ResponseRequest>(save) );
+            return Ok( _mapper.Map<ResponseRequest>(customerVM) );
         }
 
         // PUT api/values/5
         [HttpPut("{key}")]
-        public ActionResult Put(Guid key, [FromBody] CustomerViewModel obj)
+        public ActionResult<ResponseRequest> Put(Guid key, [FromBody] CustomerViewModel obj)
         {
             var dbCustomer = _service.Find(key);
 
             if(dbCustomer == null)
             {
-                return BadRequest("Cliente não encontrado");
+                return BadRequest();
             }
 
             var customer = _mapper.Map<Customer>(obj);
@@ -79,12 +81,14 @@ namespace MarvelComicsLibrary.Application.Controllers
 
             var update = _service.Amend(customer);
 
-            if (!update.Valid)
+            var customerVM = _mapper.Map<CustomerViewModel>(update);
+
+            if (!customerVM.Valid)
             {
-                return BadRequest(customer.ValidationResult.Errors);
+                return BadRequest(_mapper.Map<ResponseRequest>(customerVM));
             }
 
-            return Ok();
+            return Ok(_mapper.Map<ResponseRequest>(customerVM));
         }
 
         // DELETE api/values/5

@@ -8,21 +8,25 @@ namespace MarvelComicsLibrary.Application.Model
     {
         public bool Success { get; set; }
         public List<MessageError> MessageError { get; set; }
-        public string Data { get; set; }
+        public List<string> Data { get; set; }
 
         public ResponseRequest(bool _success, IList<ValidationFailure> validationErrors, object data)
         {
             Success = _success;
-            Data = JsonConvert.SerializeObject(data);
 
             MessageError = new List<MessageError>();
+            Data = new List<string>();
+
+            if (_success)
+            { 
+                Data.Add( JsonConvert.SerializeObject(data) );
+            }
+
             foreach (var error in validationErrors)
             {
                 MessageError.Add(new MessageError { ErrorCode = error.ErrorCode, Message = error.ErrorMessage });
             }
 
-            
         }
-
     }
 }

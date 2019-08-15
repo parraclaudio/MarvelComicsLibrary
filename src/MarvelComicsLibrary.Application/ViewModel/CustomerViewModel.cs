@@ -3,9 +3,8 @@ using System;
 
 namespace MarvelComicsLibrary.Application.ViewModel
 {
-    public class CustomerViewModel
-    {        
-        public Guid Key { get; private set; }
+    public class CustomerViewModel : BaseViewModel
+    {  
         public string Email { get; set; }
         public string Cpf { get; set; }
         public string Name { get; set; }
