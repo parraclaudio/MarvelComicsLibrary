@@ -10,8 +10,5 @@ namespace MarvelComicsLibrary.Domain.Interface
     {
         Guid Id { get; set; }
         Guid Key { get; set; }
-        ValidationResult ValidationResult { get;  set; }
-
-         bool Valid { get; set; }
     }
 }

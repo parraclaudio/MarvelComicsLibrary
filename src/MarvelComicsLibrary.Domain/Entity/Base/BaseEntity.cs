@@ -2,6 +2,7 @@
 using FluentValidation.Results;
 using MarvelComicsLibrary.Domain.Interface;
 using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json;
 using System;
 
 namespace MarvelComicsLibrary.Domain.Entity.Base
@@ -23,15 +24,11 @@ namespace MarvelComicsLibrary.Domain.Entity.Base
         public Guid Key { get;  set; }
 
         [BsonIgnore]
+        [JsonIgnore]
         public ValidationResult ValidationResult { get;  set; }
 
         [BsonIgnore]
-        public bool Valid { get; set; }
-
-        public bool Validate<TModel>(TModel model, AbstractValidator<TModel> validator)
-        { 
-            ValidationResult = validator.Validate(model);
-            return Valid = ValidationResult.IsValid;
-        }
+        [JsonIgnore]
+        public bool Valid => ValidationResult.IsValid;
     }
 }

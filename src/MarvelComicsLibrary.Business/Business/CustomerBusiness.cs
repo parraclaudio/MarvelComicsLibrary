@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using FluentValidation;
 using MarvelComicsLibrary.Business.Interface;
+using MarvelComicsLibrary.Business.Validation;
 using MarvelComicsLibrary.Domain.Entity;
-using MarvelComicsLibrary.Domain.Validation;
 using MarvelComicsLibrary.Repository.Interface;
 
 namespace MarvelComicsLibrary.Business.Business
@@ -17,11 +17,21 @@ namespace MarvelComicsLibrary.Business.Business
             _repository = repository;
         }
 
-        public Customer Save(Customer obj)
+        public List<Customer> GetList()
+        {
+            return _repository.GetAll();
+        }
+
+        public Customer Find(Guid key)
+        {
+            return _repository.GetByKey(key);
+        }
+
+        public Customer Add(Customer obj)
         {
             Validate(obj, Activator.CreateInstance<CustomerValidation>());
 
-            if(obj.Valid)
+            if (obj.Valid)
             {
                 _repository.Insert(obj);
             }
@@ -29,9 +39,21 @@ namespace MarvelComicsLibrary.Business.Business
             return obj;
         }
 
-        public List<Customer> GetList()
+        public Customer Amend(Customer obj)
         {
-            return _repository.GetAll();
+            Validate(obj, Activator.CreateInstance<CustomerValidation>());
+
+            if (obj.Valid)
+            {
+                _repository.Update(obj);
+            }
+
+            return obj;
+        }
+
+        public void Remove(Guid key)
+        {
+            _repository.Delete(key);
         }
 
         private void Validate(Customer obj, AbstractValidator<Customer> validator)

@@ -9,8 +9,8 @@ namespace MarvelComicsLibrary.Service.Interface
     {
         List<Customer> GetList();
         Customer Find(Guid key);
-        void Add(Customer obj);
-        void Amend(Customer obj);
+        Customer Add(Customer obj);
+        Customer Amend(Customer obj);
         void Remove(Guid key);
     }
 }

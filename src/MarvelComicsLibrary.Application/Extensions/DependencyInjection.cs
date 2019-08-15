@@ -1,5 +1,4 @@
-﻿using AutoMapper.Configuration;
-using MarvelComicsLibrary.Application.AutoMapper;
+﻿using MarvelComicsLibrary.Application.AutoMapper;
 using MarvelComicsLibrary.Business.Business;
 using MarvelComicsLibrary.Business.Interface;
 using MarvelComicsLibrary.Repository.Interface;
@@ -7,10 +6,6 @@ using MarvelComicsLibrary.Repository.Repository;
 using MarvelComicsLibrary.Service.Interface;
 using MarvelComicsLibrary.Service.Service;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace MarvelComicsLibrary.Application.Extensions
 {

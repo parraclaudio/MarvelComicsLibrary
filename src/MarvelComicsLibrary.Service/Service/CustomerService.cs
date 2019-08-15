@@ -9,35 +9,35 @@ namespace MarvelComicsLibrary.Service.Service
 {
     public class CustomerService : ICustomerService
     {
-        private readonly IBaseRepository<Customer> _repository;
-
-        public CustomerService(IBaseRepository<Customer> repository)
+        private readonly ICustomerBusiness _customer;
+        
+        public CustomerService( ICustomerBusiness customer, IBaseRepository<Customer> repository)
         {
-            _repository = repository;
+            _customer = customer;
         }
 
         public List<Customer> GetList()
         {
-            return _repository.GetAll();
+            return _customer.GetList();
         }
 
         public Customer Find(Guid key)
         {
-            return _repository.GetByKey(key);
+            return _customer.Find(key);
         }
 
-        public void Add(Customer obj)
+        public Customer Add(Customer obj)
         {
-            _repository.Insert(obj);
+            return _customer.Add(obj);
         }
 
-        public void Amend(Customer obj)
+        public Customer Amend(Customer obj)
         {
-            _repository.Update(obj);
+            return _customer.Amend(obj);
         }
         public void Remove(Guid key)
         {
-            _repository.Delete(key);
+            _customer.Remove(key);
         }
     }
 }

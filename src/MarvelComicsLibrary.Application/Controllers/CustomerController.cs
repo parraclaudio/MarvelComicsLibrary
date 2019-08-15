@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using MarvelComicsLibrary.Application.Model;
 using MarvelComicsLibrary.Application.ViewModel;
 using MarvelComicsLibrary.Domain.Entity;
 using MarvelComicsLibrary.Service.Interface;
@@ -46,18 +47,18 @@ namespace MarvelComicsLibrary.Application.Controllers
 
         // POST api/values
         [HttpPost]
-        public ActionResult<Guid> Post([FromBody] CustomerViewModel obj)
+        public ActionResult<ResponseRequest> Post([FromBody] CustomerViewModel obj)
         {
-            var customer = _mapper.Map<Customer>(obj);
+            var customer = _mapper.Map<Customer>( obj );
 
-           if(!customer.Valid)
+            var save = _mapper.Map<CustomerViewModel>( _service.Add(customer) );
+
+            if (!ModelState.IsValid)
             {
-                return BadRequest(customer.ValidationResult.Errors);
+                return BadRequest( _mapper.Map<ResponseRequest>(save) );
             }
 
-            _service.Add(customer);
-
-            return Ok(customer.Key);
+            return Ok( _mapper.Map<ResponseRequest>(save) );
         }
 
         // PUT api/values/5
@@ -73,15 +74,15 @@ namespace MarvelComicsLibrary.Application.Controllers
 
             var customer = _mapper.Map<Customer>(obj);
 
-            if (!customer.Valid)
-            {
-                return BadRequest(customer.ValidationResult.Errors);
-            }
-
             customer.Id = dbCustomer.Id;
             customer.Key = key;
 
-            _service.Amend(customer);
+            var update = _service.Amend(customer);
+
+            if (!update.Valid)
+            {
+                return BadRequest(customer.ValidationResult.Errors);
+            }
 
             return Ok();
         }
