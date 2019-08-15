@@ -8,9 +8,9 @@ namespace MarvelComicsLibrary.Domain.Validation
     {
         public CustomerValidation()
         {
-           /* RuleFor(x => x.Telephone).NotNull().WithMessage("Telefone Invalido");
+            RuleFor(x => x.Telephone).NotNull().WithMessage("Telefone Invalido");
             RuleFor(x => x.Name).Length(0, 40).WithMessage("Nome Invalido"); 
-            RuleFor(x => x.Email).EmailAddress().WithMessage("Email Invalido");*/
+            RuleFor(x => x.Email).EmailAddress().WithMessage("Email Invalido");
         }
     }
 }

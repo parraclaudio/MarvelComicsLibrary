@@ -34,6 +34,11 @@ namespace MarvelComicsLibrary.Repository.Repository
             return _collection.Find(Builders<T>.Filter.Eq("Key", Key)).FirstOrDefault();
         }
 
+        public Guid GetIdByKey(Guid Key)
+        {
+            return _collection.Find(Builders<T>.Filter.Eq("Key", Key)).FirstOrDefault().Id;
+        }
+
         public void Insert(T obj)
         {
             try

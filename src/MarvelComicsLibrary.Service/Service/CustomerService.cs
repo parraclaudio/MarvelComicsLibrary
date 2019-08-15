@@ -2,6 +2,7 @@
 using MarvelComicsLibrary.Domain.Entity;
 using MarvelComicsLibrary.Repository.Interface;
 using MarvelComicsLibrary.Service.Interface;
+using System;
 using System.Collections.Generic;
 
 namespace MarvelComicsLibrary.Service.Service
@@ -15,14 +16,26 @@ namespace MarvelComicsLibrary.Service.Service
             _repository = repository;
         }
 
+        public List<Customer> GetList()
+        {
+            return _repository.GetAll();
+        }
+
+        public Customer Find(Guid key)
+        {
+            return _repository.GetByKey(key);
+        }
+
         public void Add(Customer obj)
         {
             _repository.Insert(obj);
         }
 
-        public List<Customer> GetList()
+        public void Amend(Guid Key, Customer obj)
         {
-            return _repository.GetAll();
+            obj.Id = _repository.GetIdByKey(Key);
+
+            _repository.Update(obj);
         }
     }
 }

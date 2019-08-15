@@ -38,10 +38,10 @@ namespace MarvelComicsLibrary.Application.Controllers
         }
 
         // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        [HttpGet("{key}")]
+        public ActionResult<CustomerViewModel> Get(Guid key)
         {
-            return "value";
+            return Ok(_mapper.Map<CustomerViewModel>(_service.Find(key)));
         }
 
         // POST api/values
@@ -61,9 +61,19 @@ namespace MarvelComicsLibrary.Application.Controllers
         }
 
         // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{key}")]
+        public ActionResult Put(Guid key, [FromBody] CustomerViewModel obj)
         {
+            var customer = _mapper.Map<Customer>(obj);
+
+            if (!customer.Valid)
+            {
+                return BadRequest(customer.ValidationResult.Errors);
+            }
+
+            _service.Amend(key, customer);
+
+            return Ok();
         }
 
         // DELETE api/values/5
