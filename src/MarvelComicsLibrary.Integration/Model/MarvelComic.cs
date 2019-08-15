@@ -61,7 +61,7 @@ namespace MarvelComicsLibrary.Integration.Model
     public partial class Result
     {
         [JsonProperty("id")]
-        public long Id { get; set; }
+        public long ComicId { get; set; }
 
         [JsonProperty("digitalId")]
         public long DigitalId { get; set; }

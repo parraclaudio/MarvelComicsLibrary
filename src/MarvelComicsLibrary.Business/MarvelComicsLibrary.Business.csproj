@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MarvelComicsLibrary.Domain\MarvelComicsLibrary.Domain.csproj" />
+    <ProjectReference Include="..\MarvelComicsLibrary.Integration\MarvelComicsLibrary.Integration.csproj" />
     <ProjectReference Include="..\MarvelComicsLibrary.Repository\MarvelComicsLibrary.Repository.csproj" />
   </ItemGroup>
 
