@@ -35,5 +35,9 @@ namespace MarvelComicsLibrary.Service.Service
         {
             _repository.Update(obj);
         }
+        public void Remove(Guid key)
+        {
+            _repository.Delete(key);
+        }
     }
 }

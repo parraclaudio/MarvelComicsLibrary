@@ -87,9 +87,18 @@ namespace MarvelComicsLibrary.Application.Controllers
         }
 
         // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{key}")]
+        public ActionResult Delete(Guid key)
         {
+            var dbCustomer = _service.Find(key);
+
+            if (dbCustomer == null)
+            {
+                return BadRequest();
+            }
+            _service.Remove(key);
+
+            return Ok();
         }
     }
 }

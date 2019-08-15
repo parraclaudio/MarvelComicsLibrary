@@ -11,5 +11,6 @@ namespace MarvelComicsLibrary.Service.Interface
         Customer Find(Guid key);
         void Add(Customer obj);
         void Amend(Customer obj);
+        void Remove(Guid key);
     }
 }

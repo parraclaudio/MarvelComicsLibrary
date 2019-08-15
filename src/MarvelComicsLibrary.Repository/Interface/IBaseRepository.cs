@@ -13,5 +13,7 @@ namespace MarvelComicsLibrary.Repository.Interface
         void Insert(T obj);
 
         void Update(T obj);
+
+        void Delete(Guid Key);
     }
 }
