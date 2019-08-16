@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using MarvelComicsLibrary.Application.Model;
 using MarvelComicsLibrary.Application.ViewModel;
 using MarvelComicsLibrary.Domain.Entity;
 using MarvelComicsLibrary.Service.Interface;
-using MarvelComicsLibrary.Service.Service;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MarvelComicsLibrary.Application.Controllers
@@ -33,30 +30,66 @@ namespace MarvelComicsLibrary.Application.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<CustomerViewModel>> Get()
-        {         
-            return Ok();
+        public ActionResult<List<ResponseRequest>> Get()
+        {
+            var comicVM = _mapper.Map<List<ComicViewModel>>(_service.GetList());
+
+            return Ok(_mapper.Map<ResponseRequest>(comicVM));
         }
 
         // GET api/values/5
         [HttpGet("{key}")]
-        public ActionResult<CustomerViewModel> Get(Guid key)
+        public ActionResult<ResponseRequest> Get(Guid key)
         {
-            return Ok();
+            var comicVM = _mapper.Map<ComicViewModel>(_service.Find(key));
+
+            return Ok(_mapper.Map<ResponseRequest>(comicVM));
         }
 
         // POST api/values
         [HttpPost]
-        public ActionResult<ResponseRequest> Post([FromBody] CustomerViewModel obj)
+        public ActionResult<ResponseRequest> Post([FromBody] ComicViewModel obj)
         {
-            return Ok(  );
+            var comic = _mapper.Map<Comic>(obj);
+
+            var save = _service.Add(comic);
+
+            var comicVM = _mapper.Map<ComicViewModel>(save);
+
+            if (!comicVM.Valid)
+            {
+                return BadRequest(_mapper.Map<ResponseRequest>(comicVM));
+            }
+
+            return Ok(_mapper.Map<ResponseRequest>(comicVM));
         }
 
         // PUT api/values/5
         [HttpPut("{key}")]
-        public ActionResult<ResponseRequest> Put(Guid key, [FromBody] CustomerViewModel obj)
-        {    
-            return Ok();
+        public ActionResult<ResponseRequest> Put(Guid key, [FromBody] ComicViewModel obj)
+        {
+            var dbComic = _service.Find(key);
+
+            if (dbComic == null)
+            {
+                return BadRequest();
+            }
+
+            var comic = _mapper.Map<Comic>(obj);
+
+            comic.Id = dbComic.Id;
+            comic.Key = key;
+
+            var update = _service.Amend(comic);
+
+            var comicVM = _mapper.Map<ComicViewModel>(update);
+
+            if (!comicVM.Valid)
+            {
+                return BadRequest(_mapper.Map<ResponseRequest>(comicVM));
+            }
+
+            return Ok(_mapper.Map<ResponseRequest>(comicVM));
         }
 
         // DELETE api/values/5

@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using MarvelComicsLibrary.Application.Model;
 using MarvelComicsLibrary.Application.ViewModel;
 using MarvelComicsLibrary.Domain.Entity;
 using MarvelComicsLibrary.Service.Interface;
-using MarvelComicsLibrary.Service.Service;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MarvelComicsLibrary.Application.Controllers
@@ -33,7 +30,7 @@ namespace MarvelComicsLibrary.Application.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<CustomerViewModel>> Get()
+        public ActionResult<List<ResponseRequest>> Get()
         {
             var customerVM = _mapper.Map<List<CustomerViewModel>>( _service.GetList() );
 
@@ -42,7 +39,7 @@ namespace MarvelComicsLibrary.Application.Controllers
 
         // GET api/values/5
         [HttpGet("{key}")]
-        public ActionResult<CustomerViewModel> Get(Guid key)
+        public ActionResult<ResponseRequest> Get(Guid key)
         {
             var customerVM = _mapper.Map<CustomerViewModel>(_service.Find(key));
 
