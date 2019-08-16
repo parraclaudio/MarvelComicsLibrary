@@ -43,6 +43,7 @@ namespace MarvelComicsLibrary.Application.Extensions
             services.AddTransient<ICustomerService, CustomerService>();
             services.AddTransient<IComicService, ComicService>();
             services.AddTransient<IBorrowService, BorrowService>();
+            services.AddTransient<IComicQualityService, ComicQualityService>();
         }
 
 
@@ -55,6 +56,7 @@ namespace MarvelComicsLibrary.Application.Extensions
             services.AddTransient<ICustomerBusiness, CustomerBusiness>();
             services.AddTransient<IComicBusiness, ComicBusiness>();
             services.AddTransient<IBorrowBusiness, BorrowBusiness>();
+            services.AddTransient<IComicQualityBusiness, ComicQualityBusiness>();
         }
 
 

@@ -16,6 +16,8 @@ namespace MarvelComicsLibrary.Application.Extensions.AutoMapper.Profiles
             CreateMap<Comic, ComicViewModel>();
 
             CreateMap<Borrow, BorrowViewModel>();
+
+            CreateMap<ComicQuality, ComicQualityViewModel>();
         }
     }
 }
