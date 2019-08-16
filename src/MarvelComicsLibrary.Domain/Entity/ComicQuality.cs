@@ -7,6 +7,7 @@ namespace MarvelComicsLibrary.Domain.Entity
 {
     public class ComicQuality : BaseEntity
     {
+        public Guid ComicKey { get; set; }
         //0 a 10
         public int Quality { get; set; }
 
