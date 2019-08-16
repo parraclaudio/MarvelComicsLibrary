@@ -8,14 +8,14 @@ namespace MarvelComicsLibrary.Application.ViewModel
     {
         public long ComicId { get; set; }
 
+        public string Upc { get; set; }
+
         public string Title { get; set; }
 
         public long IssueNumber { get; set; }
 
-        public string Upc { get; set; }
+        public long PageCount { get; set; }
 
-        public AvaliableStatus Status { get; set; }
-
-        public DateTime? DevolutionDate { get; set; }
+        public string Description { get; set; }        
     }
 }

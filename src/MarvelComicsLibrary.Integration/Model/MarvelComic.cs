@@ -78,6 +78,9 @@ namespace MarvelComicsLibrary.Integration.Model
         [JsonProperty("upc")]
         public string Upc { get; set; }
 
+        [JsonProperty("pageCount")]
+        public string PageCount { get; set; }
+
         [JsonProperty("prices")]
         public List<Price> Prices { get; set; }
 

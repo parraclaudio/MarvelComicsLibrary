@@ -13,7 +13,7 @@ namespace MarvelComicsLibrary.Business.Business
     {
         private readonly IBaseRepository<Comic> _repository;
 
-        public ComicBusiness(IBaseRepository<Comic> repository, IMarvelApi marvelApi)
+        public ComicBusiness(IBaseRepository<Comic> repository)
         {
             _repository = repository;
         }
@@ -44,17 +44,17 @@ namespace MarvelComicsLibrary.Business.Business
 
         public Comic Find(Guid key)
         {
-            throw new NotImplementedException();
+            return _repository.GetByKey(key);
         }
 
         public List<Comic> GetList()
         {
-            throw new NotImplementedException();
+            return _repository.GetAll();
         }
 
         public void Remove(Guid key)
         {
-            throw new NotImplementedException();
+             _repository.Delete(key);
         }
 
         private void Validate(Comic obj, AbstractValidator<Comic> validator)

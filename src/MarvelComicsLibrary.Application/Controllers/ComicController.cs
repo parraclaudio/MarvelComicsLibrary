@@ -4,6 +4,7 @@ using AutoMapper;
 using MarvelComicsLibrary.Application.Model;
 using MarvelComicsLibrary.Application.ViewModel;
 using MarvelComicsLibrary.Domain.Entity;
+using MarvelComicsLibrary.Domain.Entity.Values;
 using MarvelComicsLibrary.Service.Interface;
 using Microsoft.AspNetCore.Mvc;
 
@@ -81,6 +82,30 @@ namespace MarvelComicsLibrary.Application.Controllers
             comic.Key = key;
 
             var update = _service.Amend(comic);
+
+            var comicVM = _mapper.Map<ComicViewModel>(update);
+
+            if (!comicVM.Valid)
+            {
+                return BadRequest(_mapper.Map<ResponseRequest>(comicVM));
+            }
+
+            return Ok(_mapper.Map<ResponseRequest>(comicVM));
+        }
+
+        [HttpPatch("{key}")]
+        public ActionResult<ResponseRequest> Patch(Guid key, [FromBody] AvaliableStatus status)
+        {
+            var dbComic = _service.Find(key);
+
+            if (dbComic == null)
+            {
+                return BadRequest();
+            }
+
+            dbComic.Status = status;
+
+            var update = _service.Amend(dbComic);
 
             var comicVM = _mapper.Map<ComicViewModel>(update);
 
