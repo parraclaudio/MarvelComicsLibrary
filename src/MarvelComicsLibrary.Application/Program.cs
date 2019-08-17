@@ -7,6 +7,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace MarvelComicsLibrary.Application
 {
@@ -19,6 +20,10 @@ namespace MarvelComicsLibrary.Application
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>();
+                .UseStartup<Startup>()
+                .UseSerilog((context, config) =>
+                {
+                    config.ReadFrom.Configuration(context.Configuration);
+                });
     }
 }
