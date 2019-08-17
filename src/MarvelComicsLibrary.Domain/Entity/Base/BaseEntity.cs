@@ -10,7 +10,7 @@ namespace MarvelComicsLibrary.Domain.Entity.Base
     /// <summary>
     ///  Base Entity
     /// </summary>
-    public abstract class BaseEntity : IBaseEntity
+    public abstract class BaseEntity : BaseResponse , IBaseEntity
     {
         public BaseEntity()
         {
@@ -23,13 +23,5 @@ namespace MarvelComicsLibrary.Domain.Entity.Base
 
         //Application ID
         public Guid Key { get;  set; }
-
-        [BsonIgnore]
-        [JsonIgnore]
-        public ValidationResult ValidationResult { get;  set; }
-
-        [BsonIgnore]
-        [JsonIgnore]
-        public bool Valid => ValidationResult.IsValid;
     }
 }
