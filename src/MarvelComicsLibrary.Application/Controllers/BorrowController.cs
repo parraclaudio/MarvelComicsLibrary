@@ -44,8 +44,8 @@ namespace MarvelComicsLibrary.Application.Controllers
         public ActionResult<ResponseRequest> Post([FromBody] BorrowViewModel obj)
         {
             try
-            {
-                _logger.LogInformation($"Received POST ");
+            {                
+                _logger.LogInformation("Received POST : {@data}", obj);
 
                 var borrow = _mapper.Map<Borrow>(obj);
 
@@ -55,12 +55,12 @@ namespace MarvelComicsLibrary.Application.Controllers
 
                 if (!borrowVM.Valid)
                 {
-                    _logger.LogInformation("POST Invalid " + borrowVM);
+                    _logger.LogInformation("POST Invalid : {@data}", borrowVM);
 
                     return BadRequest(_mapper.Map<ResponseRequest>(borrowVM));
                 }
 
-                _logger.LogInformation("POST OK " + borrowVM);
+                _logger.LogInformation("POST OK : {@data}", borrowVM);
 
                 return Ok(_mapper.Map<ResponseRequest>(borrowVM));
             }
