@@ -5,6 +5,7 @@ using MarvelComicsLibrary.Application.Model;
 using MarvelComicsLibrary.Application.ViewModel;
 using MarvelComicsLibrary.Domain.Entity;
 using MarvelComicsLibrary.Service.Interface;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MarvelComicsLibrary.Application.Controllers
@@ -13,6 +14,7 @@ namespace MarvelComicsLibrary.Application.Controllers
     /// 
     /// </summary>
     [Route("api/[controller]")]
+   // [EnableCors("CorsPolicy")]
     [ApiController]
     public class CustomerController : ControllerBase
     {
@@ -32,9 +34,16 @@ namespace MarvelComicsLibrary.Application.Controllers
         [HttpGet]
         public ActionResult<List<ResponseRequest>> Get()
         {
+            try { 
             var customerVM = _mapper.Map<List<CustomerViewModel>>( _service.GetList() );
 
             return Ok(_mapper.Map<ResponseRequest>(customerVM));
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return null;
+            }
         }
 
         // GET api/values/5
