@@ -34,6 +34,11 @@ namespace MarvelComicsLibrary.Business.Business
             return _repository.GetByKey(key);
         }
 
+        public List<Borrow> GetListByCustomer(Guid customerKey)
+        {
+            return  _repository.GetAllByExpression(x => x.CustomerKey == customerKey);
+        }
+
         public List<Borrow> GetList()
         {
             return _repository.GetAll();

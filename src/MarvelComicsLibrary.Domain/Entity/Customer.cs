@@ -1,4 +1,7 @@
 ﻿using MarvelComicsLibrary.Domain.Entity.Base;
+using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace MarvelComicsLibrary.Domain.Entity
 {
@@ -12,14 +15,8 @@ namespace MarvelComicsLibrary.Domain.Entity
         public string Name { get;  set; }
         public string Telephone { get;  set; }
 
-        /*public Customer(string _email,string _cpf, string _name, string _telephone)
-        {
-            Email = _email;
-            Cpf = _cpf;
-            Name = _name;
-            Telephone = _telephone;
-
-            Validate(this, new CustomerValidation());
-        }*/
+        [BsonIgnore]
+        [JsonIgnore]
+        public List<Comic> BorrowedComics { get; set; }
     }
 }

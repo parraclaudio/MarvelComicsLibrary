@@ -36,6 +36,49 @@ namespace MarvelComicsLibrary.Application.Controllers
         }
 
         /// <summary>
+        /// Fetch all borrows
+        /// </summary>
+        /// <returns></returns>
+
+        [HttpGet]
+        public ActionResult<List<ResponseRequest>> Get()
+        {
+            try
+            {
+                _logger.LogInformation("Received GET");
+
+                var borrowVM = _mapper.Map<List<BorrowViewModel>>(_service.GetList());
+
+                return Ok(_mapper.Map<ResponseRequest>(borrowVM));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                return new StatusCodeResult(500);
+            }
+        }
+
+        [HttpGet("CustomerKey/{customerKey}")]
+        public ActionResult<ResponseRequest> Get(Guid customerKey)
+        {
+            try
+            {
+                _logger.LogInformation("Received GET");
+
+                var comicVM = _mapper.Map<List<BorrowViewModel>>(_service.GetListByCustomer(customerKey));
+
+            return Ok(_mapper.Map<ResponseRequest>(comicVM));
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, ex.Message);
+                return new StatusCodeResult(500);
+            }
+        }
+
+
+
+        /// <summary>
         /// Create a borrow of a Comic
         /// </summary>
         /// <param name="obj"></param>
@@ -44,7 +87,7 @@ namespace MarvelComicsLibrary.Application.Controllers
         public ActionResult<ResponseRequest> Post([FromBody] BorrowViewModel obj)
         {
             try
-            {                
+            {
                 _logger.LogInformation("Received POST : {@data}", obj);
 
                 var borrow = _mapper.Map<Borrow>(obj);

@@ -23,6 +23,19 @@ namespace MarvelComicsLibrary.Service.Service
             return _borrow.GetList();
         }
 
+        public List<Borrow> GetListByCustomer(Guid customerKey)
+        {
+            var borrowList = _borrow.GetListByCustomer(customerKey);
+            
+            foreach (var borrow in borrowList)
+            {
+                borrow.ComicDetails = _comic.Find(borrow.ComicKey);
+                borrow.ComicDetails.DevolutionDate = borrow.DevolutionDate;
+            }
+
+            return borrowList;
+        }
+
         public Borrow Find(Guid key)
         {
             return _borrow.Find(key);

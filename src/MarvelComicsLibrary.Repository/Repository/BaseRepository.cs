@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 
 namespace MarvelComicsLibrary.Repository.Repository
 {
@@ -28,6 +29,11 @@ namespace MarvelComicsLibrary.Repository.Repository
         {
             return _collection.Find(Builders<T>.Filter.Empty).ToList();
         }
+        
+        public List<T> GetAllByExpression(Expression<Func<T, bool>> expression)
+        {
+            return _collection.Find(expression).ToList();
+        }
 
         public T GetByKey(Guid Key)
         {
@@ -39,6 +45,7 @@ namespace MarvelComicsLibrary.Repository.Repository
                 return null;
             }
         }
+
 
         public void Insert(T obj)
         {

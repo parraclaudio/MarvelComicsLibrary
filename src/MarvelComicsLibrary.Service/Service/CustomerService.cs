@@ -10,10 +10,14 @@ namespace MarvelComicsLibrary.Service.Service
     public class CustomerService : ICustomerService
     {
         private readonly ICustomerBusiness _customer;
-        
-        public CustomerService( ICustomerBusiness customer, IBaseRepository<Customer> repository)
+        private readonly IBorrowBusiness _borrow;
+        private readonly IComicBusiness _comic;
+
+        public CustomerService( ICustomerBusiness customer, IBorrowBusiness borrow, IComicBusiness comic)
         {
+            _comic = comic;
             _customer = customer;
+            _borrow = borrow;
         }
 
         public List<Customer> GetList()
@@ -38,6 +42,28 @@ namespace MarvelComicsLibrary.Service.Service
         public void Remove(Guid key)
         {
             _customer.Remove(key);
+        }
+
+        public Customer GetBorrowsByCustomer(Guid key)
+        {
+            var customer = _customer.Find(key);
+
+            var borrowList = _borrow.GetListByCustomer(key) ;
+
+            var comicList = new List<Comic>();
+
+            foreach (var borrow in borrowList)
+            {
+                var comicDetail = _comic.Find(borrow.ComicKey);
+
+                comicDetail.DevolutionDate = borrow.DevolutionDate;
+
+                comicList.Add( comicDetail );
+            }
+
+            customer.BorrowedComics = comicList;
+
+            return customer;
         }
     }
 }

@@ -36,7 +36,7 @@ namespace MarvelComicsLibrary.Business.Business
 
             if (obj.Valid)
             {
-                _repository.Insert(obj);
+                _repository.Update(obj);
             }
 
             return obj;

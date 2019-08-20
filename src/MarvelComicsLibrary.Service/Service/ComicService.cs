@@ -1,5 +1,6 @@
 ﻿using MarvelComicsLibrary.Business.Interface;
 using MarvelComicsLibrary.Domain.Entity;
+using MarvelComicsLibrary.Domain.Entity.Values;
 using MarvelComicsLibrary.Service.Interface;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,17 @@ namespace MarvelComicsLibrary.Service.Service
         {
             return _comic.Amend(obj);
         }
+
+        public Comic BorrowComic(Guid customerKey, Guid comicKey, AvaliableStatus status)
+        {
+            var borrowComic = _comic.Find(comicKey);
+
+            borrowComic.CustomerKey = customerKey;
+            borrowComic.Status = status;
+
+            return _comic.Amend(borrowComic);
+        }
+
         public void Remove(Guid key)
         {
             _comic.Remove(key);

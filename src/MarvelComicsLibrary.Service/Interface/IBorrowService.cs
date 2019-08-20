@@ -8,6 +8,7 @@ namespace MarvelComicsLibrary.Service.Interface
     public interface IBorrowService
     {
         List<Borrow> GetList();
+        List<Borrow> GetListByCustomer(Guid customerKey);
         Borrow Find(Guid key);
         Borrow Add(Borrow obj);
     }
