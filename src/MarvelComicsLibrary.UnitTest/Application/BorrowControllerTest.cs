@@ -13,6 +13,7 @@ namespace MarvelComicsLibrary.UnitTest.Application
 {
     public class BorrowControllerTest
     {
+        /*
         private readonly Mock<IBorrowService> _service;
         private readonly Mock<ILogger<BorrowController>> _logger;
         private readonly BorrowController _controller;
@@ -37,6 +38,6 @@ namespace MarvelComicsLibrary.UnitTest.Application
             Assert.NotNull(result);
 
             Assert.IsType<OkObjectResult>(result.Result);
-        }
+        }*/
     }
 }

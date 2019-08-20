@@ -4,6 +4,7 @@ using FluentValidation;
 using MarvelComicsLibrary.Business.Interface;
 using MarvelComicsLibrary.Business.Validation;
 using MarvelComicsLibrary.Domain.Entity;
+using MarvelComicsLibrary.Domain.Entity.Values;
 using MarvelComicsLibrary.Integration.Interface;
 using MarvelComicsLibrary.Repository.Interface;
 
@@ -16,6 +17,30 @@ namespace MarvelComicsLibrary.Business.Business
         public ComicBusiness(IBaseRepository<Comic> repository)
         {
             _repository = repository;
+        }
+
+        public DateTime CalculateReturnDate(long pageCount, AvaliableStatus status)
+        {
+
+            if (status == AvaliableStatus.Avaliable)
+                return DateTime.Now;
+
+
+            var daysToRead = pageCount / 4;
+            var retDate = DateTime.Now;
+
+            if (daysToRead <= 5)
+                daysToRead = 5;
+
+            retDate = retDate.AddDays(daysToRead);
+
+            if (retDate.DayOfWeek == DayOfWeek.Saturday)
+                retDate = retDate.AddDays(2);
+
+            if (retDate.DayOfWeek == DayOfWeek.Sunday)
+                retDate = retDate.AddDays(1);
+
+            return retDate;
         }
 
         public Comic Add(Comic obj)
@@ -55,6 +80,11 @@ namespace MarvelComicsLibrary.Business.Business
         public void Remove(Guid key)
         {
              _repository.Delete(key);
+        }
+
+        public List<Comic> GetListByCustomer(Guid customerKey)
+        {
+            return _repository.GetAllByExpression(x => x.CustomerKey == customerKey);
         }
 
         private void Validate(Comic obj, AbstractValidator<Comic> validator)

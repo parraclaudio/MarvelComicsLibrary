@@ -17,9 +17,7 @@ namespace MarvelComicsLibrary.Application.Extensions.AutoMapper.Profiles
             CreateMap<ComicViewModel, Comic>()
             .ForMember(x => x.Key, opt => opt.Ignore());
 
-            CreateMap<BorrowViewModel, Borrow>()
-            .ForMember(x => x.Key, opt => opt.Ignore());
-
+            
             CreateMap<ComicQualityViewModel, ComicQuality>()
             .ForMember(x => x.Key, opt => opt.Ignore());
 
@@ -31,9 +29,6 @@ namespace MarvelComicsLibrary.Application.Extensions.AutoMapper.Profiles
 
             CreateMap<ComicViewModel, ResponseRequest>().ConstructUsing(src => new ResponseRequest(src.Valid, src.ValidationResult.Errors, src));
             CreateMap<List<ComicViewModel>, ResponseRequest>().ConstructUsing(src => new ResponseRequest(src.FirstOrDefault().Valid, src.FirstOrDefault().ValidationResult.Errors, src));
-
-            CreateMap<BorrowViewModel, ResponseRequest>().ConstructUsing(src => new ResponseRequest(src.Valid, src.ValidationResult.Errors, src));
-            CreateMap<List<BorrowViewModel>, ResponseRequest>().ConstructUsing(src => new ResponseRequest(src.FirstOrDefault().Valid, src.FirstOrDefault().ValidationResult.Errors, src));
 
             CreateMap<ComicQualityViewModel, ResponseRequest>().ConstructUsing(src => new ResponseRequest(src.Valid, src.ValidationResult.Errors, src));
             CreateMap<List<ComicQualityViewModel>, ResponseRequest>().ConstructUsing(src => new ResponseRequest(src.FirstOrDefault().Valid, src.FirstOrDefault().ValidationResult.Errors, src));

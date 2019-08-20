@@ -4,6 +4,7 @@ using MarvelComicsLibrary.Application.Model;
 using MarvelComicsLibrary.Application.ViewModel;
 using MarvelComicsLibrary.Domain.Entity;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 
 namespace MarvelComicsLibrary.Application.Extensions.AutoMapper.Profiles
 {
@@ -15,7 +16,7 @@ namespace MarvelComicsLibrary.Application.Extensions.AutoMapper.Profiles
 
             CreateMap<Comic, ComicViewModel>();
 
-            CreateMap<Borrow, BorrowViewModel>();
+//            CreateMap<List<Comic>, List<ComicViewModel>>();
 
             CreateMap<ComicQuality, ComicQualityViewModel>();
         }

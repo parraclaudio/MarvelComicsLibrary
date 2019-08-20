@@ -19,16 +19,18 @@ namespace MarvelComicsLibrary.Application.Controllers
     public class CustomerController : ControllerBase
     {
         private readonly ICustomerService _service;
+        private readonly IComicService _comic;
         private readonly IMapper _mapper;
         /// <summary>
         /// 
         /// </summary>
         /// <param name="mapper"></param>
         /// <param name="service"></param>
-        public CustomerController(IMapper mapper, ICustomerService service)
+        public CustomerController(IMapper mapper, ICustomerService service, IComicService comic)
         {
             _mapper = mapper;
             _service = service;
+            _comic = comic;
         }
 
         [HttpGet]
@@ -53,6 +55,16 @@ namespace MarvelComicsLibrary.Application.Controllers
             var customerVM = _mapper.Map<CustomerViewModel>(_service.Find(key));
 
             return Ok(_mapper.Map<ResponseRequest>(customerVM));
+        }
+
+
+        // GET api/values/5
+        [HttpGet("{key}/ComicBorrow")]
+        public ActionResult<ResponseRequest> GetBorrowList(Guid key)
+        {
+            var comicVM = _mapper.Map<List<ComicViewModel>>(_comic.GetListByCustomer(key));
+
+            return Ok(_mapper.Map<ResponseRequest>(comicVM));
         }
 
         // POST api/values

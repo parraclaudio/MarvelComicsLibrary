@@ -16,6 +16,12 @@ namespace MarvelComicsLibrary.Application.ViewModel
 
         public long PageCount { get; set; }
 
-        public string Description { get; set; }        
+        public string Description { get; set; }
+
+        public AvaliableStatus Status { get; set; }
+
+        public Guid CustomerKey { get; set; }
+
+        public DateTime DevolutionDate { get; set; }
     }
 }

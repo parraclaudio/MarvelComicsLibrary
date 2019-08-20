@@ -42,8 +42,14 @@ namespace MarvelComicsLibrary.Service.Service
 
             borrowComic.CustomerKey = customerKey;
             borrowComic.Status = status;
-
+            borrowComic.DevolutionDate = _comic.CalculateReturnDate(borrowComic.PageCount, status);
+        
             return _comic.Amend(borrowComic);
+        }
+
+        public List<Comic> GetListByCustomer(Guid customerKey)
+        {
+            return _comic.GetListByCustomer(customerKey);
         }
 
         public void Remove(Guid key)

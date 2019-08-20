@@ -93,19 +93,17 @@ namespace MarvelComicsLibrary.Application.Controllers
             return Ok(_mapper.Map<ResponseRequest>(comicVM));
         }
 
-        [HttpPatch]
-        public ActionResult<ResponseRequest> Patch(BorrowViewModel borrow)
+        [HttpPatch("Borrow")]
+        public ActionResult<ResponseRequest> Patch(BorrowViewModel obj)
         {
-            var dbComic = _service.Find(borrow.ComicKey);
+            var dbComic = _service.Find(obj.ComicKey);
 
             if (dbComic == null)
             {
                 return BadRequest();
             }
 
-            dbComic.Status = borrow.status;
-
-            var update = _service.Amend(dbComic);
+            var update = _service.BorrowComic(obj.CustomerKey, obj.ComicKey, obj.status);
 
             var comicVM = _mapper.Map<ComicViewModel>(update);
 
