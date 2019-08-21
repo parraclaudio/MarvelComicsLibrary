@@ -18,6 +18,8 @@ namespace MarvelComicsLibrary.Domain.Entity
 
         public string Description { get; set; }
 
+        public string CoverImage { get; set; }
+
         public AvaliableStatus Status { get; set; }
 
         public Guid CustomerKey { get; set; }

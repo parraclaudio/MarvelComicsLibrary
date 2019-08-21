@@ -16,6 +16,7 @@ namespace MarvelComicsLibrary.Application.ViewModel
 
         public long PageCount { get; set; }
 
+        public string CoverImage { get; set; }
         public string Description { get; set; }
 
         public AvaliableStatus Status { get; set; }

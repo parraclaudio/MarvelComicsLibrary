@@ -18,7 +18,7 @@ namespace MarvelComicsLibrary.Application.Controllers
     public class ComicController : ControllerBase
     {
         private readonly IMapper _mapper;
-        private readonly ILogger _logger;
+        private readonly ILogger<ComicController> _logger;
         private readonly IComicService _service;
 
         /// <summary>
@@ -27,7 +27,7 @@ namespace MarvelComicsLibrary.Application.Controllers
         /// <param name="mapper">AutoMapper</param>
         /// <param name="logger">Serilog</param>
         /// <param name="service">Comic Service</param>
-        public ComicController(IMapper mapper, ILogger logger, IComicService service)
+        public ComicController(IMapper mapper, ILogger<ComicController> logger, IComicService service)
         {
             _mapper = mapper;
             _logger = logger;
@@ -47,7 +47,7 @@ namespace MarvelComicsLibrary.Application.Controllers
 
                 var comicVM = _mapper.Map<List<ComicViewModel>>(_service.GetList());
 
-                return Ok(_mapper.Map<ResponseRequest>(comicVM));///
+                return Ok(_mapper.Map<ResponseRequest>(comicVM));
             }
             catch (Exception ex)
             {
