@@ -36,5 +36,14 @@ namespace MarvelComicsLibrary.Integration.Service
 
             return JsonConvert.DeserializeObject<MarvelComic>(response.Content);
         }
+
+        public MarvelComic GetComicByComicID(long comicId)
+        {
+            var request = new RestRequest(Method.GET);
+
+            var response = _httpFactory.RestHttp(MarvelApiConstants.ComicsEndpoint + '/' + comicId, request);
+            
+            return MarvelComic.FromJson(response.Content);
+        }
     }
 }

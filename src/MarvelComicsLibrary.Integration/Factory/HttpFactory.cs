@@ -17,7 +17,7 @@ namespace MarvelComicsLibrary.Integration.Factory
             request.AddParameter("ts", MarvelApiConstants.TimeStamp );
             request.AddParameter("apikey", MarvelApiConstants.ApiKey);
             request.AddParameter("hash", MarvelApiConstants.Hash);
-            request.AddParameter("titleStartsWith", "Hulk");
+            //request.AddParameter("titleStartsWith", "Hulk");
             request.AddParameter("format", "Comic");
 
             //create RestSharp client and POST request object

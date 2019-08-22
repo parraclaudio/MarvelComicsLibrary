@@ -106,14 +106,14 @@ namespace MarvelComicsLibrary.Integration.Model
         public string Extension { get; set; }
     }
 
-    public partial class Comic
+    public partial class MarvelComic
     {
-        public static Comic FromJson(string json) => JsonConvert.DeserializeObject<Comic>(json, MarvelComicsLibrary.Integration.Model.Converter.Settings);
+        public static MarvelComic FromJson(string json) => JsonConvert.DeserializeObject<MarvelComic>(json, Converter.Settings);
     }
 
     public static class Serialize
     {
-        public static string ToJson(this Comic self) => JsonConvert.SerializeObject(self, MarvelComicsLibrary.Integration.Model.Converter.Settings);
+        public static string ToJson(this MarvelComic self) => JsonConvert.SerializeObject(self, Converter.Settings);
     }
 
     internal static class Converter

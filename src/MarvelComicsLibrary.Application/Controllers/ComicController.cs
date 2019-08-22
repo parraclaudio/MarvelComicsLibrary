@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using MarvelComicsLibrary.Application.Model;
 using MarvelComicsLibrary.Application.ViewModel;
 using MarvelComicsLibrary.Domain.Entity;
+using MarvelComicsLibrary.Integration.Interface;
 using MarvelComicsLibrary.Service.Interface;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -20,6 +22,7 @@ namespace MarvelComicsLibrary.Application.Controllers
         private readonly IMapper _mapper;
         private readonly ILogger<ComicController> _logger;
         private readonly IComicService _service;
+        private readonly IMarvelApi _marvel;
 
         /// <summary>
         /// Class Constructor
@@ -27,11 +30,12 @@ namespace MarvelComicsLibrary.Application.Controllers
         /// <param name="mapper">AutoMapper</param>
         /// <param name="logger">Serilog</param>
         /// <param name="service">Comic Service</param>
-        public ComicController(IMapper mapper, ILogger<ComicController> logger, IComicService service)
+        public ComicController(IMapper mapper, ILogger<ComicController> logger, IComicService service, IMarvelApi marvel)
         {
             _mapper = mapper;
             _logger = logger;
             _service = service;
+            _marvel = marvel;
         }
 
         /// <summary>
@@ -83,14 +87,16 @@ namespace MarvelComicsLibrary.Application.Controllers
         /// </summary>
         /// <param name="obj">ComicViewModel</param>
         /// <returns>ResponseRequest</returns>
-        [HttpPost]
-        public ActionResult<ResponseRequest> Post([FromBody] ComicViewModel obj)
+        [HttpPost("{comicId}")]
+        public ActionResult<ResponseRequest> Post([FromRoute] long comicId)
         {
             try
             {
-                _logger.LogInformation("Received POST : {@data}", obj);
+                _logger.LogInformation("Received POST : {@comicID}", comicId);
 
-                var comic = _mapper.Map<Comic>(obj);
+                var marvelComic = _marvel.GetComicByComicID(comicId);
+
+                var comic = _mapper.Map<Comic>(marvelComic.Data.Results.FirstOrDefault());
 
                 var save = _service.Add(comic);
 
@@ -104,6 +110,7 @@ namespace MarvelComicsLibrary.Application.Controllers
                 }
 
                 return Ok(_mapper.Map<ResponseRequest>(comicVM));
+
             }
             catch (Exception ex)
             {

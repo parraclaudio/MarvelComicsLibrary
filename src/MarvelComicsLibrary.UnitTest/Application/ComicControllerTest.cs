@@ -18,6 +18,7 @@ namespace MarvelComicsLibrary.UnitTest.Application
         private readonly Mock<ILogger<ComicController>> _logger;
         private readonly ComicController _controller;
 
+        /*
         public ComicControllerTest()
         {
             _service = new Mock<IComicService>();

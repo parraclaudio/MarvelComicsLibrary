@@ -6,5 +6,6 @@ namespace MarvelComicsLibrary.Integration.Interface
     {
         MarvelComic GetComicByUpc(string upc);
         MarvelComic GetComicByTitle(string title);
+        MarvelComic GetComicByComicID(long comicId);
     }
 }
